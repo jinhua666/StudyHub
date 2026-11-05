@@ -47,7 +47,12 @@ var
 begin
   if CurStep <> ssPostInstall then exit;
   CodexHome := GetEnv('CODEX_HOME');
-  if CodexHome = '' then CodexHome := ExpandConstant('{userprofile}\.codex');
+  if CodexHome = '' then begin
+    CodexHome := GetEnv('USERPROFILE');
+    if CodexHome = '' then
+      RaiseException('无法获取当前用户目录，无法自动安装技能。');
+    CodexHome := AddBackslash(CodexHome) + '.codex';
+  end;
   if ExtractFileDrive(CodexHome) = '' then
     RaiseException('CODEX_HOME 必须是绝对路径，无法自动安装技能。');
   SkillDir := AddBackslash(CodexHome) + 'skills\studyhub-learning-doc';
