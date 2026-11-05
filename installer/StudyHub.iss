@@ -1,5 +1,5 @@
 #define AppName "StudyHub"
-#define AppVersion "1.0.2"
+#define AppVersion "1.0.3"
 
 [Setup]
 AppId={{95A4A615-37C2-4777-A3E3-7765E0C3E784}
